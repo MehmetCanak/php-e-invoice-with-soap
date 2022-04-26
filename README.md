@@ -6,5 +6,5 @@ This repo was created for e-invoice integration using soap with php
 
 * Run "php wsdl2phpgenerator-2.3.0.phar -i input.wsdl -o path/your/directory/wsdl"
 
-php wsdl2phpgenerator-2.3.0.phar -i http://wsdurl?wsdl -o path/your/directory/wsdl
+php wsdl2phpgenerator-2.3.0.phar -i [http://wsdlurl?wsdl](https://servis.kolayentegrasyon.net/InvoiceService/InvoiceWS?wsdl) -o path/your/directory/wsdl 
 
