@@ -76,7 +76,6 @@ include_once('GetPKListResponse.php');
 include_once('GetUserGBList.php');
 include_once('GetUserGBListResponse.php');
 
-
 /**
  * 
  */
@@ -179,13 +178,36 @@ class QueryDocumentWS extends \SoapClient
    */
   public function __construct(array $options = array(), $wsdl = 'https://servis.kolayentegrasyon.net/QueryInvoiceService/QueryDocumentWS?wsdl')
   {
-    foreach (self::$classmap as $key => $value) {
-    if (!isset($options['classmap'][$key])) {
-      $options['classmap'][$key] = $value;
-    }
-  }
-  
-  parent::__construct($wsdl, $options);
+    // $header = new SoapHeader(
+    //   'Username:admin_001391',  //=> portal_kullanici_adi, //'admin_001391' ,
+    //   'Password:1POCT(Ek', //=> portal_sifre, //'1POCT(Ek' ,
+    // );
+      foreach (self::$classmap as $key => $value) {
+        if (!isset($options['classmap'][$key])) {
+          $options['classmap'][$key] = $value;
+        }
+      }
+   
+    $auth = array(
+      'Username:admin_001391',
+      'Password:1POCT(Ek'
+    );
+    $headers = array();
+
+    $headers[] = new SoapHeader( 'Username:admin_001391',//'http://servis.kolayentegrasyon.net/QueryInvoiceService/QueryDocumentWS', 
+                                'Username',
+                                'admin_001391',true);
+
+    $headers[] = new SoapHeader('http://servis.kolayentegrasyon.net/QueryInvoiceService/QueryDocumentWS', 
+                                'Password',
+                                '1POCT(Ek', true);
+    
+
+    // $header = new SoapHeader('https://servis.kolayentegrasyon.net/InvoiceService/InvoiceWS', 'Header', $auth, false);
+    // var_dump($headers);
+    // die();
+    $this->__setSoapHeaders($headers);
+    parent::__construct($wsdl, $options);
   }
 
   /**
